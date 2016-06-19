@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'pages/about' => 'pages#about'
   
   resources :articles
+  
+  get 'signup' => 'users#new'
+  resources :users, except: [:new]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
