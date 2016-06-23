@@ -13,9 +13,8 @@ class ArticlesController < ApplicationController
   
   def create
    # render plain: params[:article].inspect
-   debugger
    @article = Article.new(article_params)
-   @article.user = User.first
+   @article.user = current_user
    @article.save
     if @article.save
         flash[:success] = "Your article is successfully created"
@@ -30,17 +29,12 @@ class ArticlesController < ApplicationController
   end
   
   def update
-  
-    
     if @article.update(article_params)
       flash[:success] = "Article is successfully updated"
       redirect_to article_path(@article)
     else
       render 'edit'
     end
-      
-      
-    
   end
   
   
